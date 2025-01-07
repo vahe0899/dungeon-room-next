@@ -1,0 +1,55 @@
+.card-popup {
+    z-index: 15;
+    height: 100%;
+
+    .popup-container {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 46.5vw;
+        width: auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 48px;
+        background-color: red;
+
+        @include tablet {
+            height: auto;
+            max-width: 93.75vw;
+            width: 70vh;
+            border-radius: 24px;
+        }
+
+        @include mobile {
+            width: 92vw;
+            border-radius: 8px;
+        }
+    }
+
+    .card-popup-close-btn {
+        position: absolute;
+        right: var(--offset-x);
+        top: var(--offset-x);
+        z-index: 6;
+        --size: 46px;
+        width: var(--size);
+        height: var(--size);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        transition:
+            background-color 0.3s ease,
+            stroke 0.3s ease;
+
+        @media screen and (max-width: 1600px) {
+            --size: 36px;
+        }
+
+        @include hover {
+            background-color: #fff;
+            path {
+                stroke: #fff;
+            }
+        }
+    }
+}

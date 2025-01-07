@@ -5,8 +5,7 @@
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
-    height: 100dvh;
+    height: 100%;
     overflow: hidden;
 
     &:not(.popup--opened) {
@@ -20,6 +19,30 @@
 
         &:not(.popup--opened) {
             opacity: 0;
+        }
+    }
+
+    &[data-popup-preset='slide-left'] {
+        transition: visibility var(--leave-duration) ease;
+
+        .popup-overlay {
+            transition: opacity 0.3s ease;
+        }
+
+        .popup-container {
+            transition: transform var(--leave-duration) easeInOutCubic;
+            left: 0;
+            right: auto;
+        }
+
+        &:not(.popup--opened) {
+            .popup-overlay {
+                opacity: 0;
+            }
+
+            .popup-container {
+                transform: translate3d(-100%, 0, 0);
+            }
         }
     }
 
@@ -53,7 +76,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: inherit;
+    height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;

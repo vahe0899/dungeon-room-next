@@ -1,6 +1,6 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 
-export type PageTransitionName = 'default' | 'instant';
+export type PageTransitionName = 'default' | 'fromLeftToRight' | 'fromRightToLeft';
 
 export const DEFAULT_MODE = 'sync';
 export const DEFAULT_NAME = 'default';

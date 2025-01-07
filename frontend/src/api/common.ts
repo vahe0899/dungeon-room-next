@@ -4,7 +4,7 @@ import { CommonPageProps } from '@/types';
 export const getCommonPageProps = async (cookies?: Partial<{ [key: string]: string }>): Promise<CommonPageProps> => {
     return {
         meta: {
-            baseTitle: '[APP_TITLE]',
+            baseTitle: 'Dungeon Room',
             description: '[APP_DESCRIPTION]',
             ogImage: '/img/og-image.jpg',
         },

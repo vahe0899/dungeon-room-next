@@ -39,6 +39,12 @@ const Popup = forwardRef<HTMLDivElement, Props>(
             return () => document.removeEventListener('keydown', onKeydown);
         }, [closePopup, name]);
 
+        useEffect(() => {
+            return () => {
+                closePopup(name);
+            };
+        }, [closePopup, name]);
+
         const Component = (
             <div
                 {...props}

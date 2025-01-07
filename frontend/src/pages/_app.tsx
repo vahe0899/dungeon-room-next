@@ -8,6 +8,7 @@ import AppInits from '@/components/general/AppInits';
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import Providers from '@/components/layout/Providers';
+import TransitionBlocks from '@/components/layout/TransitionBlocks';
 import LayoutGrid from '@/components/utils/LayoutGrid';
 import { usePrevious } from '@/hooks/use-previous';
 import { CommonPageProps } from '@/types';
@@ -58,14 +59,13 @@ const App = ({ Component, pageProps }: AppProps<CommonPageProps>) => {
         <Providers>
             <AppInits />
             <AppHead meta={pageProps.meta} />
-            <Header />
+            <TransitionBlocks />
+            <Header bodyClass={pageProps.bodyClass || ''} />
             <main className="main">
                 <AnimatedPage pageProps={pageProps}>
                     <Component {...pageProps} key={router.asPath} />
                 </AnimatedPage>
             </main>
-            <Footer />
-            {process.env.NODE_ENV === 'development' && <LayoutGrid />}
         </Providers>
     );
 };

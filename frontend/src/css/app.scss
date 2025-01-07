@@ -14,10 +14,13 @@
 // Components
 @import '../components/shared/Button/Button.scss';
 @import '../components/shared/Responsive/Responsive.scss';
+@import '../components/shared/Popup/Popup.scss';
+@import '../components/shared/CardPopup/CardPopup.scss';
 
 // Layout
 @import '../components/layout/Header/Header.scss';
 @import '../components/layout/Footer/Footer.scss';
+@import '../components/layout/TransitionBlocks/TransitionBlocks.scss';
 @import '../components/layout/ErrorPageLayout/ErrorPageLayout.scss';
 
 // Pages

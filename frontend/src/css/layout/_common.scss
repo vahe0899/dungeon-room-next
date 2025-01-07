@@ -1,5 +1,6 @@
 * {
     @include scrollbar();
+    overscroll-behavior: none;
 }
 
 html {

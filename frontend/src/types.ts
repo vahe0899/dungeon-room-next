@@ -32,3 +32,17 @@ export type VideoShape = {
 }[];
 
 export type NonUndefined<T> = T extends undefined ? never : T;
+
+export type Story = {
+    imgSrc: string;
+    frontTitle: string;
+    backText: string;
+    playersCount: string;
+};
+
+export type Event = {
+    id: number;
+    date: string;
+    isDayBusy: string;
+    isEveningBusy: string;
+};

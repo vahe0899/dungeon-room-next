@@ -11,5 +11,9 @@
     );
 
     // Высота хедера
-    --header-height: 94px;
+    --header-height: 100px;
+
+    @include mobile {
+        --header-height: 50px;
+    }
 }

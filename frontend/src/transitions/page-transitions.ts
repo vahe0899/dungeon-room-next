@@ -8,13 +8,16 @@ import {
     useSetIsPageTransitioningState,
     useSetPageTransitionState,
 } from '@/atoms/page-transition';
+import { leaveFromLeftToRight } from './leave-from-left-to-right';
+import { leaveFromRightToLeft } from './leave-from-right-to-left';
 import { leaveInstant } from './leave-instant';
 
 export type LeaveFn = (data: { targetElement?: Element | null }) => Promise<void>;
 
 const leaveFnMap: Record<PageTransitionName, LeaveFn> = {
     default: leaveInstant,
-    instant: leaveInstant,
+    fromLeftToRight: leaveFromLeftToRight,
+    fromRightToLeft: leaveFromRightToLeft,
 };
 
 export const usePageTransition = () => {

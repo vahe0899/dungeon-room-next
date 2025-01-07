@@ -1,0 +1,28 @@
+.transition-white-bg-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    transform: scale(0);
+    background-color: #fff;
+    z-index: 10;
+    transform-origin: left;
+}
+
+.transition-white-bg-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    transform: scale(0);
+    background-color: #fff;
+    z-index: 10;
+    transform-origin: right;
+}
+
+.transition-white-bg {
+    background-color: #fff;
+    z-index: 11;
+}
