@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { getCommonPageProps } from '@/api/common';
 import { getStoriesAndEvents } from '@/api/stories-and-events';
 import DefaultLayout from '@/components/layout/DefaultLayout';
+import ArrSVG from '@/svg/arr.svg';
 import { CommonPageProps, Event, NonUndefined } from '@/types';
 
 const StoriesPage = ({ events }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -78,17 +79,13 @@ const StoriesPage = ({ events }: InferGetStaticPropsType<typeof getStaticProps>)
                         onClick={handlePrevMonth}
                         disabled={format(currentDate, 'yyyy-MM') === format(today, 'yyyy-MM')}
                     >
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 1L3 5L7 9" stroke="white" />
-                        </svg>
+                        <ArrSVG />
                     </button>
                     <span id="currentMonthYear" className="current-month">
                         {format(currentDate, 'LLLL yyyy', { locale: ru })}
                     </span>
                     <button id="nextMonth" className="next-month-button" onClick={handleNextMonth}>
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7 1L3 5L7 9" stroke="white" />
-                        </svg>
+                        <ArrSVG />
                     </button>
                 </div>
                 <ul className="calendar">{getCalendarDays()}</ul>

@@ -1,16 +1,18 @@
 .card-popup {
     z-index: 15;
     height: 100%;
+    display: flex;
+    gap: 40px;
 
     .popup-container {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        height: 46.5vw;
-        width: auto;
-        aspect-ratio: 16 / 9;
-        border-radius: 48px;
-        background-color: red;
+        height: 80vh;
+        width: 800px;
+        border: 1px solid #fff;
+        background-color: #000;
+        padding: 50px;
 
         @include tablet {
             height: auto;
@@ -27,8 +29,8 @@
 
     .card-popup-close-btn {
         position: absolute;
-        right: var(--offset-x);
-        top: var(--offset-x);
+        right: 20px;
+        top: 20px;
         z-index: 6;
         --size: 46px;
         width: var(--size);
@@ -36,7 +38,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 50%;
+        border: 1px solid #fff;
         transition:
             background-color 0.3s ease,
             stroke 0.3s ease;
@@ -48,8 +50,32 @@
         @include hover {
             background-color: #fff;
             path {
-                stroke: #fff;
+                stroke: #000;
             }
         }
     }
+}
+
+.card-popup-img {
+    aspect-ratio: 9 / 16;
+    height: 100%;
+}
+
+.card-popup-right {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.card-popup-title {
+    font-size: 18px;
+}
+
+.card-popup-text {
+    margin-top: 4px;
+}
+
+.card-popup-content {
+    margin-top: 20px;
 }

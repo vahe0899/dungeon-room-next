@@ -34,10 +34,18 @@ export type VideoShape = {
 export type NonUndefined<T> = T extends undefined ? never : T;
 
 export type Story = {
+    // id: number;
     imgSrc: string;
     frontTitle: string;
     backText: string;
     playersCount: string;
+    genre: string;
+    difficult: string;
+    duration: string;
+    setting: string;
+    worldFreedom: string;
+    theme: string;
+    gameSystem: string;
 };
 
 export type Event = {

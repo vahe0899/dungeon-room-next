@@ -22,7 +22,10 @@ const DropdownContext = createContext<{ opened: boolean; setOpened: Dispatch<Set
 
 export const useDropdownContext = () => useContext(DropdownContext);
 
-type TogglerProps = ButtonHTMLAttributes<HTMLButtonElement> & Partial<ButtonProps>;
+type TogglerProps = ButtonHTMLAttributes<HTMLButtonElement> &
+    Partial<ButtonProps> & {
+        keepOpen?: boolean;
+    };
 
 const Toggler = ({ tag = 'button', ...props }: TogglerProps) => {
     const { opened, setOpened } = useContext(DropdownContext);
@@ -41,16 +44,17 @@ const Toggler = ({ tag = 'button', ...props }: TogglerProps) => {
     );
 };
 
-const Picker = ({ tag = 'button', ...props }: TogglerProps) => {
+const Picker = ({ tag = 'button', keepOpen, ...props }: TogglerProps) => {
     const { setOpened } = useContext(DropdownContext);
     const Component = tag as any;
 
     return (
         <Component
             {...props}
+            type={tag === 'button' ? 'button' : undefined}
             className={classNames('dropdown-picker-btn', props.className)}
             onClick={(event: any) => {
-                setOpened(false);
+                if (!keepOpen) setOpened(false);
                 props.onClick?.(event);
             }}
         ></Component>
