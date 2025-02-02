@@ -27,7 +27,12 @@ const CardPopup = ({ activeStory }: Props) => {
                         />
                     </div>
                     <div className="card-popup-right">
-                        <div className="card-popup-title">{activeStory.frontTitle}</div>
+                        <div
+                            className="card-popup-title"
+                            dangerouslySetInnerHTML={{
+                                __html: `${activeStory.frontTitle}`,
+                            }}
+                        ></div>
                         <div
                             className="card-popup-text"
                             dangerouslySetInnerHTML={{

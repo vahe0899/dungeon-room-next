@@ -66,6 +66,7 @@ const App = ({ Component, pageProps }: AppProps<CommonPageProps>) => {
                     <Component {...pageProps} key={router.asPath} />
                 </AnimatedPage>
             </main>
+            <Footer />
         </Providers>
     );
 };

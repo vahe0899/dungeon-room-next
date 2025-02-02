@@ -113,9 +113,10 @@ const StoriesPage = ({ stories }: InferGetStaticPropsType<typeof getStaticProps>
                             exit={{ opacity: 0, y: 20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            {filteredStories.map((story) => (
+                            {filteredStories.map((story, i) => (
                                 <div
                                     className="stories-list-item"
+                                    key={i}
                                     onClick={() => {
                                         setActiveStory(story);
                                         openPopup(CARD_POPUP_NAME);
@@ -129,7 +130,12 @@ const StoriesPage = ({ stories }: InferGetStaticPropsType<typeof getStaticProps>
                                                 alt={story.frontTitle}
                                             />
                                         </div>
-                                        <div className="front-description-title">{story.frontTitle}</div>
+                                        <div
+                                            className="front-description-title"
+                                            dangerouslySetInnerHTML={{
+                                                __html: `${story.frontTitle}`,
+                                            }}
+                                        ></div>
                                         <div className="front-description-text">Подробнее...</div>
                                     </div>
                                 </div>

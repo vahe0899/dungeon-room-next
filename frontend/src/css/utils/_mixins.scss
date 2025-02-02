@@ -46,16 +46,16 @@
     overflow: hidden;
 }
 
-@mixin scrollbar($color: #000) {
+@mixin scrollbar($color: #fff) {
     @supports (scrollbar-width: thin) {
         scrollbar-width: thin;
         scrollbar-color: $color transparent;
     }
 
-    @supports selector(*::-webkit-scrollbar) {
-        scrollbar-width: revert;
-        scrollbar-color: revert;
-    }
+    // @supports selector(*::-webkit-scrollbar) {
+    //     scrollbar-width: revert;
+    //     scrollbar-color: revert;
+    // }
 
     &::-webkit-scrollbar {
         width: 8px;
@@ -102,6 +102,12 @@
 
 @mixin tablet() {
     @media screen and (max-width: 1199px) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media screen and (max-width: 1600px) {
         @content;
     }
 }

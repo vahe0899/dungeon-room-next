@@ -107,7 +107,7 @@ const Select = ({
                     </div>
                 )}
             </div>
-            <Dropdown.Content ref={contentElRef}>
+            <Dropdown.Content>
                 <ul className="list-unstyled select-options-list input-group">
                     {options.map((option, i) => (
                         <li key={i} className="select-options-list__item">

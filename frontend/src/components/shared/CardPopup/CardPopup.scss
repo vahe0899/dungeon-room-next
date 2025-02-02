@@ -4,26 +4,34 @@
     display: flex;
     gap: 40px;
 
+    @include mobile {
+        flex-direction: column;
+        overflow: auto;
+        gap: 0;
+    }
+
     .popup-container {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         height: 80vh;
-        width: 800px;
+        width: 1200px;
         border: 1px solid #fff;
-        background-color: #000;
-        padding: 50px;
+        background-color: $dark;
+        padding-left: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        @include laptop {
+            width: 1000px;
+        }
 
         @include tablet {
-            height: auto;
-            max-width: 93.75vw;
-            width: 70vh;
-            border-radius: 24px;
+            width: 93.75vw;
         }
 
         @include mobile {
             width: 92vw;
-            border-radius: 8px;
         }
     }
 
@@ -44,7 +52,7 @@
             stroke 0.3s ease;
 
         @media screen and (max-width: 1600px) {
-            --size: 36px;
+            --size: 34px;
         }
 
         @include hover {
@@ -59,6 +67,11 @@
 .card-popup-img {
     aspect-ratio: 9 / 16;
     height: 100%;
+
+    @include mobile {
+        height: 70vh;
+        display: none;
+    }
 }
 
 .card-popup-right {
@@ -66,6 +79,21 @@
     display: flex;
     flex-direction: column;
     align-items: start;
+    padding-right: 50px;
+    @include scrollbar();
+
+    @include mobile {
+        height: 100%;
+        overflow: unset;
+    }
+}
+
+.card-popup-left {
+    @include mobile {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 }
 
 .card-popup-title {
@@ -74,6 +102,10 @@
 
 .card-popup-text {
     margin-top: 4px;
+
+    @include mobile {
+        margin-top: 10px;
+    }
 }
 
 .card-popup-content {
