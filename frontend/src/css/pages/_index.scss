@@ -870,6 +870,7 @@ main {
     }
 
     &.is-active {
+        white-space: nowrap;
         &::before {
             transform: scaleX(1);
         }
