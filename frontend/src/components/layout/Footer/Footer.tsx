@@ -61,8 +61,8 @@ const Footer = () => {
                     {footerData.address.text}
                 </Link>
                 <div className="contacts-socials">
-                    {contacts.map((contact) => (
-                        <div className="contacts-item">
+                    {contacts.map((contact, i) => (
+                        <div className="contacts-item" key={i}>
                             <Link
                                 className="contacts-link btn-underline btn-underline--border"
                                 href={contact.href}
