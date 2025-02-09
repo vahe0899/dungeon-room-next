@@ -869,6 +869,18 @@ main {
         transform-origin: left;
     }
 
+    &.is-active {
+        &::before {
+            transform: scaleX(1);
+        }
+
+        @include hover {
+            &::before {
+                transform: scaleX(0);
+            }
+        }
+    }
+
     @include hover {
         &::before {
             transform: scaleX(1);
@@ -925,5 +937,13 @@ main {
     .cluster-item {
         border: none;
         border-top: 1px solid #fff;
+    }
+}
+
+.calendar-subtitle {
+    text-align: center;
+
+    @include mobile {
+        font-size: 12px;
     }
 }
