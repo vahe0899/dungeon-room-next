@@ -96,15 +96,15 @@ const Content = ({
     );
 };
 
-const Dropdown = ({ children, ...props }: Props) => {
+const Dropdown = ({ id, children, ...props }: Props) => {
     const [opened, setOpened] = useState(false);
-    useOnOutsideClickAction('.js-dropdown', () => setOpened(false));
+    useOnOutsideClickAction(`.js-dropdown-${id}`, () => setOpened(false));
 
     return (
         <DropdownContext.Provider value={{ opened, setOpened }}>
             <div
                 {...props}
-                className={classNames('dropdown js-dropdown', props.className, { 'dropdown--opened': opened })}
+                className={classNames(`dropdown js-dropdown-${id}`, props.className, { 'dropdown--opened': opened })}
             >
                 {children}
             </div>

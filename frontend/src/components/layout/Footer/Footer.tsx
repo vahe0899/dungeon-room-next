@@ -1,4 +1,6 @@
 import Link from '@/components/shared/Link';
+import InstaSVG from '@/svg/insta.svg';
+import TgSVG from '@/svg/tg.svg';
 
 const footerData = {
     logo: '/images/logo.png',
@@ -22,6 +24,17 @@ const footerData = {
         },
     ],
 };
+
+const contacts = [
+    {
+        href: 'https://www.instagram.com/dungeon_room',
+        icon: 'InstaSVG',
+    },
+    {
+        href: 'https://t.me/dungeonroom',
+        icon: 'TgSVG',
+    },
+];
 
 const Footer = () => {
     return (
@@ -48,16 +61,18 @@ const Footer = () => {
                     {footerData.address.text}
                 </Link>
                 <div className="contacts-socials">
-                    {footerData.socials.map((social, index) => (
-                        <Link
-                            key={index}
-                            href={social.href}
-                            className="link-underline"
-                            target="_blank"
-                            rel="noopener noreferrer nofollow"
-                        >
-                            {social.text}
-                        </Link>
+                    {contacts.map((contact) => (
+                        <div className="contacts-item">
+                            <Link
+                                className="contacts-link btn-underline btn-underline--border"
+                                href={contact.href}
+                                target="_blank"
+                                rel="noopener noreferrer nofollow"
+                            >
+                                {contact.icon === 'InstaSVG' && <InstaSVG />}
+                                {contact.icon === 'TgSVG' && <TgSVG />}
+                            </Link>
+                        </div>
                     ))}
                 </div>
             </div>

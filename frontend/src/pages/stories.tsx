@@ -77,7 +77,7 @@ const StoriesPage = ({ stories }: InferGetStaticPropsType<typeof getStaticProps>
                         const uniqueValues = getUniqueValues(field);
 
                         return (
-                            <Dropdown key={field} className="story-dropdown">
+                            <Dropdown key={field} id={field} className="story-dropdown">
                                 <Dropdown.Toggler className="story-select-btn">
                                     <div className="text-xs">{fieldLabels[field]}</div>
                                     <ArrSVG className="story-arrow-svg" />
@@ -136,7 +136,12 @@ const StoriesPage = ({ stories }: InferGetStaticPropsType<typeof getStaticProps>
                                                 __html: `${story.frontTitle}`,
                                             }}
                                         ></div>
-                                        <div className="front-description-text">Подробнее...</div>
+                                        <div className="front-description-text-wrapper">
+                                            {story.playersCount && (
+                                                <div className="front-description-text">{story.playersCount}</div>
+                                            )}
+                                            {story.genre && <div className="front-description-text">{story.genre}</div>}
+                                        </div>
                                     </div>
                                 </div>
                             ))}
