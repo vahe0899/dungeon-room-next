@@ -3,6 +3,7 @@
     height: 100%;
     display: flex;
     gap: 40px;
+    font-family: 'Montserrat-light';
 
     @include mobile {
         flex-direction: column;

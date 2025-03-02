@@ -73,10 +73,10 @@ const StoriesPage = ({ events }: InferGetStaticPropsType<typeof getStaticProps>)
             <section className="section first-section calendar-section">
                 <h1 className="page-title">Свободные даты</h1>
                 <p className="calendar-subtitle">
-                    Запись осуществляется в дневное время (с 12:00) и в вечернее (с 19:00)
+                    Начало дневных игр с 12:00, начало вечерних игр 19:00;
                     <br />
                     <br />
-                    Для подтверждения бронирования предоплату не берем;
+                    Для подтверждения бронирования предоплату не берем
                 </p>
                 <div className="calendar-buttons">
                     <button
