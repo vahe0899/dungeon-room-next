@@ -124,11 +124,7 @@ const StoriesPage = ({ stories }: InferGetStaticPropsType<typeof getStaticProps>
                                 >
                                     <div className="card-face card-face-front">
                                         <div className="storie-img-container">
-                                            <img
-                                                className="storie-img"
-                                                src={`https://dungeon-room.ru/${story.imgSrc}`}
-                                                alt={story.frontTitle}
-                                            />
+                                            <img className="storie-img" src={story.imgSrc} alt={story.frontTitle} />
                                         </div>
                                         <div
                                             className="front-description-title"

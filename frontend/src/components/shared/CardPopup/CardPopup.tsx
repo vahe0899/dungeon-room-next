@@ -20,11 +20,7 @@ const CardPopup = ({ activeStory }: Props) => {
                         <CloseSVG />
                     </button>
                     <div className="card-popup-left">
-                        <img
-                            className="card-popup-img"
-                            src={`https://dungeon-room.ru/${activeStory.imgSrc}`}
-                            alt={activeStory.frontTitle}
-                        />
+                        <img className="card-popup-img" src={activeStory.imgSrc} alt={activeStory.frontTitle} />
                     </div>
                     <div className="card-popup-right">
                         <div
