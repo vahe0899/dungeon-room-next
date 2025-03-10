@@ -700,13 +700,20 @@ main {
     min-width: 100px;
     position: absolute;
     top: calc(100% + 12px);
-    left: 0;
     transition: color 0.3s ease;
 
     @include mobile {
         font-size: 12px;
         padding: 12px;
     }
+}
+
+.story-filter__content.bottom-left {
+    left: 0;
+}
+
+.story-filter__content.bottom-right {
+    right: 0;
 }
 
 .dropdown--opened {

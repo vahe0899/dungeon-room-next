@@ -97,7 +97,7 @@ const StoriesPage = () => {
                                     <div className="text-xs">{fieldLabels[field]}</div>
                                     <ArrSVG className="story-arrow-svg" />
                                 </Dropdown.Toggler>
-                                <Dropdown.Content className="story-filter__content" position="bottom-right">
+                                <Dropdown.Content className="story-filter__content">
                                     <ul className="list-unstyled menu-dropdown-list">
                                         {uniqueValues.map((value) => (
                                             <Dropdown.Picker

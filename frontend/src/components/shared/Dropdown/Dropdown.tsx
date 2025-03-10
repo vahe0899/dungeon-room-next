@@ -1,14 +1,7 @@
 import classNames from 'classnames';
 import { AnimationProps, motion } from 'framer-motion';
-import {
-    ButtonHTMLAttributes,
-    Dispatch,
-    HTMLAttributes,
-    SetStateAction,
-    createContext,
-    useContext,
-    useState,
-} from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { ButtonHTMLAttributes, Dispatch, HTMLAttributes, SetStateAction, createContext, useContext } from 'react';
 import { useOnOutsideClickAction } from '@/hooks/use-on-outside-click-action';
 import { easeOutQuart } from '@/utils/easings';
 import { Props as ButtonProps } from '../Button/Button';
@@ -66,18 +59,35 @@ const Content = ({
     position = 'bottom-left',
     ...props
 }: HTMLAttributes<HTMLElement> & {
-    position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'bottom-center';
+    position?: 'bottom-left' | 'bottom-right';
 }) => {
     const { opened } = useDropdownContext();
+    const contentRef = useRef<HTMLDivElement>(null);
+    const [adjustedPosition, setAdjustedPosition] = useState(position);
+
+    useEffect(() => {
+        if (contentRef.current) {
+            const dropdownRect = contentRef.current.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+
+            // Если контент выходит за правый край, меняем позицию на bottom-right
+            if (dropdownRect.right > viewportWidth) {
+                setAdjustedPosition('bottom-right');
+            } else {
+                setAdjustedPosition('bottom-left');
+            }
+        }
+    }, [position]);
 
     return (
         <motion.div
             {...(props as AnimationProps)}
+            ref={contentRef}
             variants={{
                 hidden: {
                     pointerEvents: 'none',
                     opacity: 0,
-                    y: 7 * (position.startsWith('bottom') ? -1 : 1),
+                    y: -7,
                     transition: { duration: 0.3, ease: easeOutQuart },
                 },
                 visible: {
@@ -89,7 +99,7 @@ const Content = ({
             }}
             initial={false}
             animate={opened ? 'visible' : 'hidden'}
-            className={classNames('dropdown-content', props.className, position)}
+            className={classNames('dropdown-content', props.className, adjustedPosition)}
         >
             <div className="dropdown-content-inner">{children}</div>
         </motion.div>
