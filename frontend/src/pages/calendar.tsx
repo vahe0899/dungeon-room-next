@@ -9,17 +9,35 @@ import {
     subMonths,
 } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useState } from 'react';
+import { GetStaticProps } from 'next';
+import { useEffect, useState } from 'react';
 import { getCommonPageProps } from '@/api/common';
 import { getStoriesAndEvents } from '@/api/stories-and-events';
 import DefaultLayout from '@/components/layout/DefaultLayout';
 import ArrSVG from '@/svg/arr.svg';
 import { CommonPageProps, Event, NonUndefined } from '@/types';
 
-const StoriesPage = ({ events }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const StoriesPage = () => {
     const today = new Date();
     const [currentDate, setCurrentDate] = useState(today);
+    const [events, setEvents] = useState<Event[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            setLoading(true);
+            try {
+                const eventsResponse = await getStoriesAndEvents();
+                setEvents(eventsResponse.events || []);
+            } catch (error) {
+                console.error('Ошибка загрузки событий:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchEvents();
+    }, []);
 
     const handlePrevMonth = () => {
         setCurrentDate((prev) => subMonths(prev, 1));
@@ -30,7 +48,7 @@ const StoriesPage = ({ events }: InferGetStaticPropsType<typeof getStaticProps>)
     };
 
     const getWeekDayShort = (date: Date): string => {
-        const dayIndex = format(date, 'i', { locale: ru }); // Получаем номер дня недели (1 = пн, 7 = вс)
+        const dayIndex = format(date, 'i', { locale: ru });
         const shortWeekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
         return shortWeekDays[Number(dayIndex) - 1];
     };
@@ -77,6 +95,17 @@ const StoriesPage = ({ events }: InferGetStaticPropsType<typeof getStaticProps>)
                     <br />
                     <br />
                     Для подтверждения бронирования предоплату не берем
+                    <br />
+                    <br />
+                    Для бронирования писать в{' '}
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-underline is-active"
+                        href="https://t.me/DungeonRoom_Master"
+                    >
+                        социальные сети
+                    </a>
                 </p>
                 <div className="calendar-buttons">
                     <button
@@ -94,7 +123,7 @@ const StoriesPage = ({ events }: InferGetStaticPropsType<typeof getStaticProps>)
                         <ArrSVG />
                     </button>
                 </div>
-                <ul className="calendar">{getCalendarDays()}</ul>
+                {loading ? <p>Загрузка...</p> : <ul className="calendar">{getCalendarDays()}</ul>}
             </section>
         </DefaultLayout>
     );
@@ -102,15 +131,10 @@ const StoriesPage = ({ events }: InferGetStaticPropsType<typeof getStaticProps>)
 
 export default StoriesPage;
 
-type StoriesPageProps = NonUndefined<
-    CommonPageProps & {
-        events: Event[];
-    }
->;
+type StoriesPageProps = NonUndefined<CommonPageProps>;
 
 export const getStaticProps: GetStaticProps<StoriesPageProps> = async () => {
-    const [commonPageProps, eventsResponse] = await Promise.all([getCommonPageProps(), getStoriesAndEvents()]);
-    const events = eventsResponse.events || [];
+    const [commonPageProps] = await Promise.all([getCommonPageProps()]);
 
     return {
         props: {
@@ -118,9 +142,9 @@ export const getStaticProps: GetStaticProps<StoriesPageProps> = async () => {
             bodyClass: 'calendar-page',
             meta: {
                 title: 'Календарь',
+                baseTitle: 'Dungeon Room',
                 description: 'Просмотр свободных дат.',
             },
-            events,
         } satisfies StoriesPageProps,
     };
 };

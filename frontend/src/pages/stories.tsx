@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getCommonPageProps } from '@/api/common';
 import { getStoriesAndEvents } from '@/api/stories-and-events';
 import { useSetOpenedPopupsState } from '@/atoms/opened-popups';
@@ -12,11 +12,24 @@ import Dropdown from '@/components/shared/Dropdown';
 import ArrSVG from '@/svg/arr.svg';
 import { CommonPageProps, NonUndefined, Story } from '@/types';
 
-const StoriesPage = ({ stories }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const StoriesPage = () => {
     const { openPopup } = useSetOpenedPopupsState();
     const [activeStory, setActiveStory] = useState<Story>();
+    const [stories, setStories] = useState<Story[]>([]);
 
-    // Состояние фильтров
+    useEffect(() => {
+        const fetchStories = async () => {
+            try {
+                const storiesResponse = await getStoriesAndEvents();
+                setStories(storiesResponse.stories || []);
+            } catch (error) {
+                console.error('Ошибка загрузки сюжетов:', error);
+            }
+        };
+
+        fetchStories();
+    }, []);
+
     const [filters, setFilters] = useState({
         playersCount: [] as string[],
         genre: [] as string[],
@@ -75,6 +88,8 @@ const StoriesPage = ({ stories }: InferGetStaticPropsType<typeof getStaticProps>
                     {Object.keys(filters).map((filterKey) => {
                         const field = filterKey as keyof typeof filters;
                         const uniqueValues = getUniqueValues(field);
+
+                        if (uniqueValues.length === 0) return null; // Пропускаем пустые фильтры
 
                         return (
                             <Dropdown key={field} id={field} className="story-dropdown">
@@ -164,15 +179,10 @@ const StoriesPage = ({ stories }: InferGetStaticPropsType<typeof getStaticProps>
 
 export default StoriesPage;
 
-type StoriesPageProps = NonUndefined<
-    CommonPageProps & {
-        stories: Story[];
-    }
->;
+type StoriesPageProps = NonUndefined<CommonPageProps>;
 
 export const getStaticProps: GetStaticProps<StoriesPageProps> = async () => {
-    const [commonPageProps, storiesResponse] = await Promise.all([getCommonPageProps(), getStoriesAndEvents()]);
-    const stories = storiesResponse.stories || [];
+    const [commonPageProps] = await Promise.all([getCommonPageProps()]);
 
     return {
         props: {
@@ -183,7 +193,6 @@ export const getStaticProps: GetStaticProps<StoriesPageProps> = async () => {
                 title: 'Сюжеты',
                 description: 'Ознакомьтесь с сюжетами для ваших приключений!',
             },
-            stories,
         } satisfies StoriesPageProps,
     };
 };

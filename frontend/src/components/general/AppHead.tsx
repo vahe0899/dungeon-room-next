@@ -32,16 +32,8 @@ const AppHead = ({ meta }: Props) => {
             <meta name="twitter:image" content={meta.ogImage} />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={meta.description} />
-            <link rel="icon" href="/img/favicon/favicon.ico" />
-            {/* <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
-
-            {/* <link
-                rel="preload"
-                href="/fonts/FormaDJRText-Regular.woff2"
-                as="font"
-                type="font/woff2"
-                crossOrigin="anonymous"
-            /> */}
+            <link rel="icon" href="/favicon.ico" />
+            <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         </Head>
     );
 };

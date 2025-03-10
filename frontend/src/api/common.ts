@@ -5,7 +5,7 @@ export const getCommonPageProps = async (cookies?: Partial<{ [key: string]: stri
     return {
         meta: {
             baseTitle: 'Dungeon Room',
-            description: '[APP_DESCRIPTION]',
+            description: 'DUNGEON ROOM / ИММЕРСИВНОЕ НАСТОЛЬНОЕ ПРИКЛЮЧЕНИЕ',
             ogImage: '/img/og-image.jpg',
         },
         cookies: cookies ? new Cookies(cookies).getAll() : null,

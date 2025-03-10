@@ -13,7 +13,7 @@ export type ApiStoriesAndEventsResponse = {
 };
 
 export const getStoriesAndEvents = (): Promise<ApiStoriesAndEventsResponse> =>
-    axiosAPI.get<ApiStoriesAndEventsResponse>('https://dungeon-room.ru/get_data.php').then((res) => res.data);
+    axiosAPI.get<ApiStoriesAndEventsResponse>('/get_data.php').then((res) => res.data);
 
 export const useStoriesQuery = (initialData?: ApiStoriesAndEventsResponse) =>
     useQuery({
