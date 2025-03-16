@@ -91,7 +91,7 @@ const StoriesPage = () => {
             <section className="section first-section calendar-section">
                 <h1 className="page-title">Свободные даты</h1>
                 <p className="calendar-subtitle">
-                    Начало дневных игр с 12:00, начало вечерних игр 19:00;
+                    Начало дневных игр 12:00, начало вечерних игр 19:00;
                     <br />
                     <br />
                     Для подтверждения бронирования предоплату не берем
