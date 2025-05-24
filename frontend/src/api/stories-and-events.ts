@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import Axios from 'axios';
 import { Event, Story } from '@/types';
-import { axiosAPI } from './axios-instance';
 
 export type ApiStoriesAndEventsRequest = Partial<{
     limit: number;
@@ -13,7 +13,7 @@ export type ApiStoriesAndEventsResponse = {
 };
 
 export const getStoriesAndEvents = (): Promise<ApiStoriesAndEventsResponse> =>
-    axiosAPI.get<ApiStoriesAndEventsResponse>('/get_data.php').then((res) => res.data);
+    Axios.get<ApiStoriesAndEventsResponse>('https://dungeon-room.ru/get_data.php').then((res) => res.data);
 
 export const useStoriesQuery = (initialData?: ApiStoriesAndEventsResponse) =>
     useQuery({
